@@ -4,6 +4,7 @@ public class Version1 {
     public static void main(String[] args) {
         SubjectList subjects = new SubjectList();
         MenuController input = new MenuController();
+        MainMenu menu = new MainMenu();
 
         //title to showcase name
         Introduction intro = new Introduction();
@@ -15,18 +16,8 @@ public class Version1 {
         //prevents user to enter invalid texts
         while(true) {
             if(enter.isEmpty()){
-                //menu tab to showcase option
-                    System.out.println("=================================================");
-                    System.out.println("                   MAIN MENU                     ");
-                    System.out.println("=================================================");
-                    System.out.println();
-                    System.out.println("1. Dashboard");
-                    System.out.println();
-                    System.out.println("2. Subjects");
-                    System.out.println();
-                    System.out.println("3. Exit");
-                    System.out.println();
-                    System.out.print("Select: ");
+                //menu tab to showcase options
+                 menu.showMenu();
                     int option = input.getIntegers();
 
                     switch(option){
