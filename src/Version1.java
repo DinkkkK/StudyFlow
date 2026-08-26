@@ -1,15 +1,16 @@
-import java.util.Scanner;
+
 public class Version1 {
-    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         SubjectList subjects = new SubjectList();
+        MenuController input = new MenuController();
 
         //title to showcase name
         Introduction intro = new Introduction();
         intro.printIntroduction();
 
         System.out.print("<press Enter key>");
-        String enter = scanner.nextLine();
+       String enter = input.getStrings();
 
         //prevents user to enter invalid texts
         while(true) {
@@ -26,14 +27,14 @@ public class Version1 {
                     System.out.println("3. Exit");
                     System.out.println();
                     System.out.print("Select: ");
-                    int option = Integer.valueOf(scanner.nextLine());
+                    int option = input.getIntegers();
 
                     switch(option){
                         case 1 -> {
-                            Dashboard(subjects);
+                            Dashboard(subjects, input);
                         }
                         case 2 -> {
-                            Subjects(subjects);
+                            Subjects(subjects, input);
                         }
                         case 3 -> {
                             System.out.println("Thank you for using StudyFlow!");
@@ -45,13 +46,12 @@ public class Version1 {
                     }
                } else {
                 System.out.println("Invalid input! Try again");
-                enter = scanner.nextLine();
+                enter = input.getStrings();
             }
             }
         }
 
-   static public void Subjects(SubjectList sub) {
-
+    static public void Subjects(SubjectList sub, MenuController input) {
         System.out.println("1. View Subjects");
         System.out.println();
         System.out.println("2. Add Subject Subjects");
@@ -59,7 +59,7 @@ public class Version1 {
         System.out.println("3. Delete Subjects");
         System.out.println();
         System.out.print("Select: ");
-        int option = Integer.valueOf(scanner.nextLine());
+        int option = input.getIntegers();
 
         switch(option) {
 
@@ -72,29 +72,29 @@ public class Version1 {
 
                 while (true) {
                     System.out.println("Please enter the name of the subjects you want to add.");
-                    String subject = scanner.nextLine();
+                    String subject = input.getStrings();
                     sub.addSubject(new Subject(subject));
                     System.out.println("Subject added successfully!");
 
                     if (subject.isEmpty()) {
                         System.out.println("Please enter a subject name!");
-                        subject = scanner.nextLine();
+                        subject = input.getStrings();
                         sub.addSubject(new Subject(subject));
                     }
 
                     System.out.println("Would you like to add another subject? (Y/N)");
-                    String answer = scanner.nextLine();
+                    String answer = input.getStrings();
 
                     while(!answer.equalsIgnoreCase("Y") && !answer.equalsIgnoreCase("N")){
                         System.out.println("Invalid input! Try again");
-                        answer = scanner.nextLine();
+                        answer = input.getStrings();
                     }
 
                     if(answer.equalsIgnoreCase("Y")) {
                         while (true) {
 
                             System.out.println("Please enter another subject! (Press ~) to exit.");
-                            subject = scanner.nextLine();
+                            subject = input.getStrings();
 
                             if (subject.equals("~")) {
                                 System.out.println("Thank you!");
@@ -117,7 +117,7 @@ public class Version1 {
             case 3 -> {
                 System.out.println("Which subject do you want to remove?");
                 sub.displaySubjects();
-                String subject = scanner.nextLine();
+                String subject = input.getStrings();
 
                 if(sub.removeSubject(subject)){
                     System.out.println("Subject removed successfully!");
@@ -135,7 +135,7 @@ public class Version1 {
         }
     }
 
-    static public void Dashboard(SubjectList sub){
+    static public void Dashboard(SubjectList sub, MenuController input){
         System.out.println("Current Subjects:");
         sub.countSubjects();
         int numberOfSubjects = sub.countSubjects();
