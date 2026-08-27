@@ -6,6 +6,7 @@ public class Version1 {
         MenuController input = new MenuController();
         SubjectHandler subjectHandler = new SubjectHandler(input, subjects);
         MenuHandler menuHandler = new MenuHandler();
+        DashboardHandler dashboardHandler = new DashboardHandler(subjects);
 
         //title to showcase name
         Introduction intro = new Introduction();
@@ -23,7 +24,7 @@ public class Version1 {
 
                     switch(option){
                         case 1 -> {
-                            Dashboard(subjects, input);
+                            dashboardHandler.handleDashboard();
                         }
                         case 2 -> {
                             subjectHandler.handleSubjects();
@@ -42,19 +43,6 @@ public class Version1 {
             }
             }
         }
-
-    static public void Dashboard(SubjectList sub, MenuController input){
-        System.out.println("Current Subjects:");
-        int numberOfSubjects = sub.countSubjects();
-        System.out.println(numberOfSubjects);
-        System.out.println("Assignments");
-        System.out.println();
-        System.out.println("Coming Soon");
-        System.out.println();
-        System.out.println("Study Planner");
-        System.out.println();
-        System.out.println("Coming Soon");
-    }
 
 }
 
