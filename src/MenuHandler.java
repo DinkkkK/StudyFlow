@@ -1,5 +1,6 @@
-public class MainMenu {
-    public void showMenu(){
+public class MenuHandler {
+
+    public void showMainMenu(){
         System.out.println("=================================================");
         System.out.println("                   MAIN MENU                     ");
         System.out.println("=================================================");
@@ -12,5 +13,6 @@ public class MainMenu {
         System.out.println();
         System.out.print("Select: ");
     }
+
 
 }
