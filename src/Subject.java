@@ -11,7 +11,8 @@ public class Subject {
 }
 
 class SubjectList {
-    ArrayList<Subject> subjects = new ArrayList<>();
+
+    private ArrayList<Subject> subjects = new ArrayList<>();
 
     public void addSubject(Subject s) {
         subjects.add(s);
