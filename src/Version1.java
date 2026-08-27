@@ -62,16 +62,17 @@ public class Version1 {
             case 2 -> {
 
                 while (true) {
+
                     System.out.println("Please enter the name of the subjects you want to add.");
                     String subject = input.getStrings();
-                    sub.addSubject(new Subject(subject));
-                    System.out.println("Subject added successfully!");
 
-                    if (subject.isEmpty()) {
+                    while (subject.isEmpty()) {
                         System.out.println("Please enter a subject name!");
                         subject = input.getStrings();
-                        sub.addSubject(new Subject(subject));
                     }
+
+                    sub.addSubject(new Subject(subject));
+                    System.out.println("Subject added successfully!");
 
                     System.out.println("Would you like to add another subject? (Y/N)");
                     String answer = input.getStrings();
