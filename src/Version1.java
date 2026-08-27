@@ -128,7 +128,6 @@ public class Version1 {
 
     static public void Dashboard(SubjectList sub, MenuController input){
         System.out.println("Current Subjects:");
-        sub.countSubjects();
         int numberOfSubjects = sub.countSubjects();
         System.out.println(numberOfSubjects);
         System.out.println("Assignments");
