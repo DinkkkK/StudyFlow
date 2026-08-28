@@ -43,5 +43,16 @@ class SubjectList {
         }
         return false;
     }
-}
+
+    public Subject findSubject(String subjectName){
+
+        for(int i = 0; i < subjects.size(); i++){
+            if(subjectName.equalsIgnoreCase(subjects.get(i).getSubjectName())){
+                return subjects.get(i);
+            }
+            }
+            return null;
+        }
+    }
+
 

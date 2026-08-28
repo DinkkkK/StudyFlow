@@ -1,7 +1,9 @@
+
 public class SubjectHandler {
 
     private MenuController input;
     private SubjectList subs;
+
 
     public SubjectHandler(MenuController input, SubjectList subs){
         this.input = input;
@@ -15,6 +17,7 @@ public class SubjectHandler {
         System.out.println();
         System.out.println("3. Delete Subjects");
         System.out.println();
+        System.out.println("4. Find a Subject");
         System.out.print("Select: ");
 
         int option = input.getIntegers();
@@ -28,6 +31,9 @@ public class SubjectHandler {
             }
             case 3 -> {
                 removeSubject();
+            }
+            case 4 ->{
+                findSubject();
             }
             default -> {
                 System.out.println("Invalid input! Try again");
@@ -109,4 +115,22 @@ public class SubjectHandler {
         }
     }
 
-}
+    private void findSubject(){
+        System.out.println("What subject are you looking for?");
+        String searchFor = input.getStrings();
+
+        Subject foundSubject = subs.findSubject(searchFor);
+
+        if(foundSubject != null){
+            System.out.println("Subject found successfully!");
+            System.out.printf(foundSubject.getSubjectName());
+
+        } else {
+            System.out.println("Subject not found!");
+        }
+
+
+    }
+
+    }
+
