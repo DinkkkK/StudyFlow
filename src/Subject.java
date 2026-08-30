@@ -14,8 +14,13 @@ class SubjectList {
 
     private ArrayList<Subject> subjects = new ArrayList<>();
 
-    public void addSubject(Subject s) {
-        subjects.add(s);
+    public boolean addSubject(Subject subject){
+        if(duplicateChecker(subject.getSubjectName())){
+            return false;
+
+        }
+        subjects.add(subject);
+        return true;
     }
 
     public void displaySubjects() {
@@ -36,7 +41,7 @@ class SubjectList {
     public boolean removeSubject(String s) {
         for (int i = 0; i < subjects.size(); i++) {
             if (subjects.get(i).getSubjectName().equalsIgnoreCase(s)) {
-                    subjects.remove(i);
+                subjects.remove(i);
                 return true;
             }
 
@@ -44,15 +49,24 @@ class SubjectList {
         return false;
     }
 
-    public Subject findSubject(String subjectName){
+    public Subject findSubject(String subjectName) {
 
-        for(int i = 0; i < subjects.size(); i++){
-            if(subjectName.equalsIgnoreCase(subjects.get(i).getSubjectName())){
+        for (int i = 0; i < subjects.size(); i++) {
+            if (subjectName.equalsIgnoreCase(subjects.get(i).getSubjectName())) {
                 return subjects.get(i);
             }
-            }
-            return null;
         }
+        return null;
     }
+
+    public boolean duplicateChecker(String subjectName) {
+        for (Subject subject : subjects) {
+            if (subjectName.equalsIgnoreCase(subject.getSubjectName())) {
+               return true;
+            }
+        }
+        return false;
+    }
+}
 
 
