@@ -1,13 +1,24 @@
 import java.util.ArrayList;
 public class Subject {
     private String subjectName;
+    private String subjectCode;
+    private int credits;
 
-    public Subject(String subjectName) {
+    public Subject(String subjectName, String subjectCode, int credits) {
         this.subjectName = subjectName;
+        this.subjectCode = subjectCode;
+        this.credits = credits;
     }
     public String getSubjectName() {
         return this.subjectName;
     }
+    public String getSubjectCode(){
+        return this.subjectCode;
+    }
+    public int getCredits(){
+        return this.credits;
+    }
+
 }
 
 class SubjectList {
@@ -29,7 +40,9 @@ class SubjectList {
             return;
         }
         for (int i = 0; i < subjects.size(); i++) {
-            System.out.println(subjects.get(i).getSubjectName());
+            System.out.println(subjects.get(i).getSubjectCode()
+                    + " | " + subjects.get(i).getSubjectName() +
+                    " | " +(subjects.get(i).getCredits()) + " credits");
         }
     }
 
@@ -40,7 +53,9 @@ class SubjectList {
 
     public boolean removeSubject(String s) {
         for (int i = 0; i < subjects.size(); i++) {
-            if (subjects.get(i).getSubjectName().equalsIgnoreCase(s)) {
+            if (subjects.get(i).getSubjectName().equalsIgnoreCase(s) ||
+                subjects.get(i).getSubjectCode().equalsIgnoreCase(s)){
+
                 subjects.remove(i);
                 return true;
             }

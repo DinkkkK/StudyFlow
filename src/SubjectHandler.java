@@ -52,12 +52,19 @@ public class SubjectHandler {
                 subject = input.getStrings();
             }
 
-            if (subject.equals("~")) {
+            if (subject.equals("~")){
                 System.out.println("Thank you!");
-                return;
+                break;
             }
 
-            boolean added = subs.addSubject(new Subject(subject));
+            System.out.println("Enter subject code: ");
+            String subjectCode = input.getStrings();
+
+            System.out.println("Enter credits for subject: ");
+            int subjectCredits = input.getIntegers();
+
+
+            boolean added = subs.addSubject(new Subject(subject, subjectCode, subjectCredits));
 
                 if(added) {
                     System.out.println("Subject added!");
@@ -99,7 +106,7 @@ public class SubjectHandler {
 
         if(foundSubject != null){
             System.out.println("Subject found successfully!");
-            System.out.printf(foundSubject.getSubjectName());
+            System.out.println(foundSubject.getSubjectName());
 
         } else {
             System.out.println("Subject not found!");
