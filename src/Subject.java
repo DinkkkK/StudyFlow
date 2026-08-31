@@ -64,10 +64,12 @@ class SubjectList {
         return false;
     }
 
-    public Subject findSubject(String subjectName) {
+    public Subject findSubject(String subjectIdentifier) {
 
         for (int i = 0; i < subjects.size(); i++) {
-            if (subjectName.equalsIgnoreCase(subjects.get(i).getSubjectName())) {
+            if (subjectIdentifier.equalsIgnoreCase(subjects.get(i).getSubjectName()) ||
+                subjectIdentifier.equalsIgnoreCase(subjects.get(i).getSubjectCode())){
+
                 return subjects.get(i);
             }
         }
