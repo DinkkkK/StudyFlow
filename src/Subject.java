@@ -26,7 +26,7 @@ class SubjectList {
     private ArrayList<Subject> subjects = new ArrayList<>();
 
     public boolean addSubject(Subject subject){
-        if(duplicateChecker(subject.getSubjectName())){
+        if(duplicateChecker(subject)){
             return false;
 
         }
@@ -76,9 +76,11 @@ class SubjectList {
         return null;
     }
 
-    public boolean duplicateChecker(String subjectName) {
+    public boolean duplicateChecker(Subject newSubject) {
         for (Subject subject : subjects) {
-            if (subjectName.equalsIgnoreCase(subject.getSubjectName())) {
+            if (newSubject.getSubjectName().equalsIgnoreCase(subject.getSubjectName()) ||
+                    newSubject.getSubjectCode().equalsIgnoreCase(subject.getSubjectCode())) {
+
                return true;
             }
         }
