@@ -2,11 +2,11 @@
 public class Version1 {
 
     public static void main(String[] args) {
-        SubjectList subjects = new SubjectList();
+        SubjectOperator operator = new SubjectOperator();
         MenuController input = new MenuController();
-        SubjectHandler subjectHandler = new SubjectHandler(input, subjects);
+        SubjectHandler subjectHandler = new SubjectHandler(input, operator);
         MenuHandler menuHandler = new MenuHandler();
-        DashboardHandler dashboardHandler = new DashboardHandler(subjects);
+        DashboardHandler dashboardHandler = new DashboardHandler(input, operator);
 
         //title to showcase name
         Introduction intro = new Introduction();

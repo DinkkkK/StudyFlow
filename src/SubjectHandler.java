@@ -2,12 +2,12 @@
 public class SubjectHandler {
 
     private MenuController input;
-    private SubjectList subs;
+    private SubjectOperator operator;
 
 
-    public SubjectHandler(MenuController input, SubjectList subs) {
+    public SubjectHandler(MenuController input, SubjectOperator operator) {
         this.input = input;
-        this.subs = subs;
+        this.operator = operator;
     }
 
     public void handleSubjects() {
@@ -64,7 +64,7 @@ public class SubjectHandler {
             int subjectCredits = input.getIntegers();
 
 
-            boolean added = subs.addSubject(new Subject(subject, subjectCode, subjectCredits));
+            boolean added = operator.addSubject(new Subject(subject, subjectCode, subjectCredits));
 
                 if(added) {
                     System.out.println("Subject added!");
@@ -79,20 +79,20 @@ public class SubjectHandler {
 
     private void viewAllSubject(){
         System.out.println("Your Subjects:");
-        subs.displaySubjects();
+        operator.displaySubjects();
         System.out.println();
     }
 
     private void removeSubject(){
         System.out.println("Which subject do you want to remove?");
-        subs.displaySubjects();
+        operator.displaySubjects();
         String subject = input.getStrings();
 
-        if(subs.removeSubject(subject)){
+        if(operator.removeSubject(subject)){
             System.out.println("Subject removed successfully!");
             System.out.println();
             System.out.println("Your current subjects: ");
-            subs.displaySubjects();
+            operator.displaySubjects();
         } else {
             System.out.println("Subject not found!");
         }
@@ -102,7 +102,7 @@ public class SubjectHandler {
         System.out.println("What subject are you looking for?");
         String searchFor = input.getStrings();
 
-        Subject foundSubject = subs.findSubject(searchFor);
+        Subject foundSubject = operator.findSubject(searchFor);
 
         if(foundSubject != null){
             System.out.println("Subject found successfully!");
