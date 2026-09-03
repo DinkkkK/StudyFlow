@@ -12,33 +12,33 @@ public class DashboardHandler {
         System.out.println("Current Subjects:");
         int numberOfSubjects = operator.countSubjects();
         System.out.println(numberOfSubjects);
-        System.out.println("1. Add Assignments");
+        System.out.println("1. Add Assignment");
         System.out.println();
-        System.out.println("2. Coming Soon");
+        System.out.println("2. View Assignments");
         System.out.println();
         System.out.println("3. Study Planner");
         System.out.println();
         System.out.println("4. Coming Soon");
         int options = input.getIntegers();
 
-            switch (options) {
-                case 1 -> {
-                    addAssignment();
-                }
-                case 2 -> {
-                    System.out.println("2. Coming Soon");
-                }
-                case 3 -> {
-                    System.out.println("3. Coming Soon");
-                }
-                case 4 -> {
-                    System.out.println("4. Study Planner");
-                }
-                default -> {
-                    System.out.println("Invalid input! Try again");
-                }
+        switch (options) {
+            case 1 -> {
+                addAssignment();
+            }
+            case 2 -> {
+                viewAssignment();
+            }
+            case 3 -> {
+                System.out.println("3. Coming Soon");
+            }
+            case 4 -> {
+                System.out.println("4. Study Planner");
+            }
+            default -> {
+                System.out.println("Invalid input! Try again");
             }
         }
+    }
 
     private void addAssignment() {
 
@@ -55,7 +55,7 @@ public class DashboardHandler {
 
             if (findSubject != null) {
 
-                System.out.println("What assignments do you want to add? (press ~ to quit)");
+                System.out.println("What assignment do you want to add? (press ~ to quit)");
                 String title = input.getStrings();
 
                 if (title.equals("~")) {
@@ -80,4 +80,22 @@ public class DashboardHandler {
 
         System.out.println("Thank you!");
     }
-}
+
+    public void viewAssignment() {
+        System.out.println("Which subject would you like to view assignments for?");
+        operator.displaySubjects();
+        String subject = input.getStrings();
+
+        Subject findSubject = operator.findSubject(subject);
+
+            if(findSubject != null){
+                System.out.println("Assignment for: " + findSubject.getSubjectName());
+                findSubject.displayAssignment();
+
+            } else {
+                    System.out.println("Subject not Found!");
+
+            }
+        }
+    }
+
