@@ -3,16 +3,16 @@ public class DashboardHandler {
     private MenuController input;
     private SubjectOperator operator;
 
-    public DashboardHandler(MenuController input, SubjectOperator operator){
+    public DashboardHandler(MenuController input, SubjectOperator operator) {
         this.input = input;
         this.operator = operator;
     }
 
-    public void handleDashboard(){
+    public void handleDashboard() {
         System.out.println("Current Subjects:");
         int numberOfSubjects = operator.countSubjects();
         System.out.println(numberOfSubjects);
-        System.out.println("1. Assignments");
+        System.out.println("1. Add Assignments");
         System.out.println();
         System.out.println("2. Coming Soon");
         System.out.println();
@@ -21,7 +21,6 @@ public class DashboardHandler {
         System.out.println("4. Coming Soon");
         int options = input.getIntegers();
 
-        while (true) {
             switch (options) {
                 case 1 -> {
                     addAssignment();
@@ -40,25 +39,26 @@ public class DashboardHandler {
                 }
             }
         }
-    }
 
     private void addAssignment() {
 
-        System.out.println("Which subject would you like to add an assignment in?");
-        operator.displaySubjects();
-        String subject = input.getStrings();
+        while (true) {
+            System.out.println("Which subject would you like to add an assignment in? (press ~ to quit)");
+            operator.displaySubjects();
+            String subject = input.getStrings();
 
-        Subject findSubject = operator.findSubject(subject);
+            if (subject.equals("~")) {
+                break;
+            }
 
+            Subject findSubject = operator.findSubject(subject);
 
             if (findSubject != null) {
-                while (true) {
-                    System.out.println("Subject found: " + findSubject.getSubjectName());
 
                 System.out.println("What assignments do you want to add? (press ~ to quit)");
                 String title = input.getStrings();
 
-                if(title.equals("~")) {
+                if (title.equals("~")) {
                     break;
                 }
 
@@ -70,12 +70,14 @@ public class DashboardHandler {
 
                 findSubject.addAssignment(new Assignment(title, givenDate, dueDate));
                 System.out.println("Assignments added successfully!");
-            }
-
+                findSubject.displayAssignment();
             } else {
                 System.out.println("Subject not found!");
 
-        }
-    }
 
+            }
+        }
+
+        System.out.println("Thank you!");
+    }
 }

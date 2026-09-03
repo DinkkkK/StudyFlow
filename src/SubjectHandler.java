@@ -88,6 +88,7 @@ public class SubjectHandler {
         operator.displaySubjects();
         String subject = input.getStrings();
 
+
         if(operator.removeSubject(subject)){
             System.out.println("Subject removed successfully!");
             System.out.println();
