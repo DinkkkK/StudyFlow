@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class DashboardHandler {
 
     private MenuController input;
@@ -44,7 +46,15 @@ public class DashboardHandler {
 
         while (true) {
             System.out.println("Which subject would you like to add an assignment in? (press ~ to quit)");
-            operator.displaySubjects();
+
+            ArrayList <Subject> subjectInfo = operator.returnSubjects();
+
+            for(Subject subject : subjectInfo){
+                System.out.println(subject.getSubjectName() + " | " +
+                        subject.getSubjectCode() + " | " +
+                        subject.getCredits());
+            }
+
             String subject = input.getStrings();
 
             if (subject.equals("~")) {
@@ -70,7 +80,15 @@ public class DashboardHandler {
 
                 findSubject.addAssignment(new Assignment(title, givenDate, dueDate));
                 System.out.println("Assignments added successfully!");
-                findSubject.displayAssignment();
+
+                ArrayList <Assignment> assignmentInfo = findSubject.returnAssignment();
+
+                for(int i = 0; i < assignmentInfo.size(); i++){
+                    System.out.println(assignmentInfo.get(i).getTitle() + " | " +
+                            assignmentInfo.get(i).getGivenDate() + " | " +
+                            assignmentInfo.get(i).getDueDate());
+                }
+
             } else {
                 System.out.println("Subject not found!");
 
@@ -83,14 +101,29 @@ public class DashboardHandler {
 
     public void viewAssignment() {
         System.out.println("Which subject would you like to view assignments for?");
-        operator.displaySubjects();
+
+        ArrayList<Subject> subjectInfo = operator.returnSubjects();
+
+        for(Subject subject : subjectInfo){
+            System.out.println(subject.getSubjectName() + " | " +
+                    subject.getSubjectCode() + " | " +
+                    subject.getCredits());
+        }
+
         String subject = input.getStrings();
 
         Subject findSubject = operator.findSubject(subject);
 
             if(findSubject != null){
                 System.out.println("Assignment for: " + findSubject.getSubjectName());
-                findSubject.displayAssignment();
+
+                ArrayList <Assignment> assignmentInfo = findSubject.returnAssignment();
+
+                for(int i = 0; i < assignmentInfo.size(); i++){
+                    System.out.println(assignmentInfo.get(i).getTitle() + " | " +
+                                       assignmentInfo.get(i).getGivenDate() + " | " +
+                                        assignmentInfo.get(i).getDueDate());
+                }
 
             } else {
                     System.out.println("Subject not Found!");

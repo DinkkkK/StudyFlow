@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class SubjectHandler {
 
@@ -52,7 +53,7 @@ public class SubjectHandler {
                 subject = input.getStrings();
             }
 
-            if (subject.equals("~")){
+            if (subject.equals("~")) {
                 System.out.println("Thank you!");
                 break;
             }
@@ -66,46 +67,58 @@ public class SubjectHandler {
 
             boolean added = operator.addSubject(new Subject(subject, subjectCode, subjectCredits));
 
-                if(added) {
-                    System.out.println("Subject added!");
-                } else {
-                    System.out.println("Subject already exists!");
-                }
-
+            if (added) {
+                System.out.println("Subject added!");
+            } else {
+                System.out.println("Subject already exists!");
             }
 
-            }
+        }
 
-
-    private void viewAllSubject(){
-        System.out.println("Your Subjects:");
-        operator.displaySubjects();
-        System.out.println();
     }
 
-    private void removeSubject(){
+    private void viewAllSubject() {
+        System.out.println("Your Subjects:");
+
+        ArrayList <Subject> subjectInfo = operator.returnSubjects();
+
+        for(Subject subject : subjectInfo){
+            System.out.println(subject.getSubjectName() + " | " +
+                               subject.getSubjectCode() + " | " +
+                               subject.getCredits());
+        }
+    }
+
+    private void removeSubject() {
         System.out.println("Which subject do you want to remove?");
-        operator.displaySubjects();
+
+        ArrayList <Subject> subjectInfo = operator.returnSubjects();
+
+        for(Subject subject : subjectInfo){
+            System.out.println(subject.getSubjectName() + " | " +
+                    subject.getSubjectCode() + " | " +
+                    subject.getCredits());
+        }
+
         String subject = input.getStrings();
 
-
-        if(operator.removeSubject(subject)){
+        if (operator.removeSubject(subject)) {
             System.out.println("Subject removed successfully!");
             System.out.println();
             System.out.println("Your current subjects: ");
-            operator.displaySubjects();
+            operator.returnSubjects();
         } else {
             System.out.println("Subject not found!");
         }
     }
 
-    private void findSubject(){
+    private void findSubject() {
         System.out.println("What subject are you looking for?");
         String searchFor = input.getStrings();
 
         Subject foundSubject = operator.findSubject(searchFor);
 
-        if(foundSubject != null){
+        if (foundSubject != null) {
             System.out.println("Subject found successfully!");
             System.out.println(foundSubject.getSubjectName());
 
@@ -115,6 +128,7 @@ public class SubjectHandler {
 
 
     }
+}
 
-    }
+
 

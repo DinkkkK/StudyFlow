@@ -24,15 +24,10 @@ public class Subject {
         assignments.add(assignment);
     }
 
-    public void displayAssignment(){
-        for(int i = 0; i < assignments.size(); i++){
-            System.out.println(assignments.get(i).getTitle() + " | " +
-                               assignments.get(i).getGivenDate() + " | " +
-                               assignments.get(i).getDueDate());
-        }
+    public ArrayList<Assignment> returnAssignment(){
+        return assignments;
+
     }
-
-
 }
 
 

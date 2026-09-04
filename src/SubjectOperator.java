@@ -12,17 +12,12 @@ public class SubjectOperator {
             return true;
         }
 
-        public void displaySubjects() {
-            if (subjects.isEmpty()) {
-                System.out.println("No subjects found!");
-                return;
-            }
-            for (int i = 0; i < subjects.size(); i++) {
-                System.out.println(subjects.get(i).getSubjectCode()
-                        + " | " + subjects.get(i).getSubjectName() +
-                        " | " +(subjects.get(i).getCredits()) + " credits");
-            }
+        public ArrayList<Subject> returnSubjects() {
+
+            return subjects;
         }
+
+
 
         public int countSubjects() {
             int total = subjects.size();
