@@ -28,6 +28,17 @@ public class Subject {
         return assignments;
 
     }
+
+    public boolean removeAssignment(String assignment){
+        for(int i = 0; i < assignments.size(); i++){
+            if(assignments.get(i).getTitle().equalsIgnoreCase(assignment)){
+            assignments.remove(i);
+            return true;
+        }
+    }
+        return false;
 }
+}
+
 
 
