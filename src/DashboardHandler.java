@@ -51,8 +51,8 @@ public class DashboardHandler {
 
             for(Subject subject : subjectInfo){
                 System.out.println(subject.getSubjectName() + " | " +
-                        subject.getSubjectCode() + " | " +
-                        subject.getCredits());
+                                   subject.getSubjectCode() + " | " +
+                                   subject.getCredits());
             }
 
             String subject = input.getStrings();
@@ -83,10 +83,10 @@ public class DashboardHandler {
 
                 ArrayList <Assignment> assignmentInfo = findSubject.returnAssignment();
 
-                for(int i = 0; i < assignmentInfo.size(); i++){
-                    System.out.println(assignmentInfo.get(i).getTitle() + " | " +
-                            assignmentInfo.get(i).getGivenDate() + " | " +
-                            assignmentInfo.get(i).getDueDate());
+                for(Assignment assignment : assignmentInfo){
+                    System.out.println(assignment.getTitle() + " | " +
+                                       assignment.getGivenDate() + " | " +
+                                       assignment.getDueDate());
                 }
 
             } else {
@@ -106,8 +106,8 @@ public class DashboardHandler {
 
         for(Subject subject : subjectInfo){
             System.out.println(subject.getSubjectName() + " | " +
-                    subject.getSubjectCode() + " | " +
-                    subject.getCredits());
+                               subject.getSubjectCode() + " | " +
+                               subject.getCredits());
         }
 
         String subject = input.getStrings();
@@ -119,10 +119,10 @@ public class DashboardHandler {
 
                 ArrayList <Assignment> assignmentInfo = findSubject.returnAssignment();
 
-                for(int i = 0; i < assignmentInfo.size(); i++){
-                    System.out.println(assignmentInfo.get(i).getTitle() + " | " +
-                                       assignmentInfo.get(i).getGivenDate() + " | " +
-                                        assignmentInfo.get(i).getDueDate());
+                for(Assignment assignment: assignmentInfo){
+                    System.out.println(assignment.getTitle() + " | " +
+                                       assignment.getGivenDate() + " | " +
+                                       assignment.getDueDate());
                 }
 
             } else {

@@ -91,22 +91,28 @@ public class SubjectHandler {
 
     private void removeSubject() {
         System.out.println("Which subject do you want to remove?");
-
         ArrayList <Subject> subjectInfo = operator.returnSubjects();
 
         for(Subject subject : subjectInfo){
             System.out.println(subject.getSubjectName() + " | " +
-                    subject.getSubjectCode() + " | " +
-                    subject.getCredits());
+                               subject.getSubjectCode() + " | " +
+                               subject.getCredits());
         }
 
-        String subject = input.getStrings();
+        String subjectIdentifier = input.getStrings();
 
-        if (operator.removeSubject(subject)) {
+        if (operator.removeSubject(subjectIdentifier)) {
             System.out.println("Subject removed successfully!");
             System.out.println();
             System.out.println("Your current subjects: ");
-            operator.returnSubjects();
+
+            for(Subject subject : subjectInfo){
+                System.out.println(subject.getSubjectName() + " | " +
+                        subject.getSubjectCode() + " | " +
+                        subject.getCredits());
+            }
+
+
         } else {
             System.out.println("Subject not found!");
         }

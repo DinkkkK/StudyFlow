@@ -25,26 +25,26 @@ public class SubjectOperator {
         }
 
         public boolean removeSubject(String s) {
-            for (int i = 0; i < subjects.size(); i++) {
-                if (subjects.get(i).getSubjectName().equalsIgnoreCase(s) ||
-                        subjects.get(i).getSubjectCode().equalsIgnoreCase(s)){
+            for (int i = 0; i < subjects.size(); i++){
+                if(subjects.get(i).getSubjectName().equalsIgnoreCase(s) ||
+                  subjects.get(i).getSubjectCode().equalsIgnoreCase(s)){
 
                     subjects.remove(i);
                     return true;
+
                 }
 
             }
+
             return false;
         }
 
         public Subject findSubject(String subjectIdentifier) {
 
-            for (int i = 0; i < subjects.size(); i++) {
-                if (subjectIdentifier.equalsIgnoreCase(subjects.get(i).getSubjectName()) ||
-                        subjectIdentifier.equalsIgnoreCase(subjects.get(i).getSubjectCode())){
-
-                    return subjects.get(i);
-                }
+            for(Subject subject : subjects){
+                if(subjectIdentifier.equalsIgnoreCase(subject.getSubjectName()) ||
+                   subjectIdentifier.equalsIgnoreCase(subject.getSubjectCode()))
+                    return subject;
             }
             return null;
         }
