@@ -4,10 +4,12 @@ public class DashboardHandler {
 
     private MenuController input;
     private SubjectOperator operator;
+    private DisplayHandler displayGetters;
 
-    public DashboardHandler(MenuController input, SubjectOperator operator) {
+    public DashboardHandler(MenuController input, SubjectOperator operator, DisplayHandler displayGetters) {
         this.input = input;
         this.operator = operator;
+        this.displayGetters = displayGetters;
     }
 
     public void handleDashboard() {
@@ -47,13 +49,7 @@ public class DashboardHandler {
         while (true) {
             System.out.println("Which subject would you like to add an assignment in? (press ~ to quit)");
 
-            ArrayList<Subject> subjectInfo = operator.returnSubjects();
-
-            for (Subject subject : subjectInfo) {
-                System.out.println(subject.getSubjectName() + " | " +
-                        subject.getSubjectCode() + " | " +
-                        subject.getCredits());
-            }
+            displayGetters.displaySubjects();
 
             String subject = input.getStrings();
 
@@ -81,13 +77,7 @@ public class DashboardHandler {
                 findSubject.addAssignment(new Assignment(title, givenDate, dueDate));
                 System.out.println("Assignments added successfully!");
 
-                ArrayList<Assignment> assignmentInfo = findSubject.returnAssignment();
-
-                for (Assignment assignment : assignmentInfo) {
-                    System.out.println(assignment.getTitle() + " | " +
-                            assignment.getGivenDate() + " | " +
-                            assignment.getDueDate());
-                }
+               displayGetters.displayAssignments(findSubject);
 
             } else {
                 System.out.println("Subject not found!");
@@ -102,13 +92,7 @@ public class DashboardHandler {
     public void viewAssignment() {
         System.out.println("Which subject would you like to view assignments for?");
 
-        ArrayList<Subject> subjectInfo = operator.returnSubjects();
-
-        for (Subject subject : subjectInfo) {
-            System.out.println(subject.getSubjectName() + " | " +
-                    subject.getSubjectCode() + " | " +
-                    subject.getCredits());
-        }
+       displayGetters.displaySubjects();
 
         String subject = input.getStrings();
 
@@ -117,13 +101,7 @@ public class DashboardHandler {
         if (findSubject != null) {
             System.out.println("Assignment for: " + findSubject.getSubjectName());
 
-            ArrayList<Assignment> assignmentInfo = findSubject.returnAssignment();
-
-            for (Assignment assignment : assignmentInfo) {
-                System.out.println(assignment.getTitle() + " | " +
-                        assignment.getGivenDate() + " | " +
-                        assignment.getDueDate());
-            }
+            displayGetters.displayAssignments(findSubject);
 
         } else {
             System.out.println("Subject not Found!");
@@ -136,11 +114,7 @@ public class DashboardHandler {
 
         ArrayList<Subject> subjectInfo = operator.returnSubjects();
 
-        for (Subject subject : subjectInfo) {
-            System.out.println(subject.getSubjectName() + " | " +
-                    subject.getSubjectCode() + " | " +
-                    subject.getCredits() + " credits");
-        }
+        displayGetters.displaySubjects();
 
         String removeAssignmentFrom = input.getStrings();
 
@@ -153,7 +127,6 @@ public class DashboardHandler {
 
             if (subject != null) {
 
-
                 ArrayList<Assignment> assignments = subject.returnAssignment();
 
                 if (assignments.isEmpty()) {
@@ -164,11 +137,8 @@ public class DashboardHandler {
 
                     System.out.println("Here are your listed assignments:");
 
-                    for (Assignment assignment : assignments) {
-                        System.out.println(assignment.getTitle() + " | " +
-                                assignment.getGivenDate() + " | " +
-                                assignment.getDueDate());
-                    }
+                    displayGetters.displayAssignments(subject);
+
                     System.out.print("Which assignment do you want to remove? (press ~ to quit)");
                     String selectedAssignment = input.getStrings();
 
@@ -184,11 +154,8 @@ public class DashboardHandler {
                         System.out.println("Assignment removed successfully!");
                         System.out.println("Here is your updated list: ");
 
-                        for (Assignment assignment : assignments) {
-                            System.out.println(assignment.getTitle() + " | " +
-                                    assignment.getGivenDate() + " | " +
-                                    assignment.getDueDate());
-                        }
+                        displayGetters.displayAssignments(subject);
+
                     } else {
                         System.out.println("Sorry this assignment does not exist!");
                     }
@@ -200,16 +167,11 @@ public class DashboardHandler {
 
 
         }
+
         private void changeAssignment(){
             System.out.println("Which subject do you want to edit an assignment on? (press ~ to quit)");
 
-            ArrayList<Subject> subjects = operator.returnSubjects();
-
-            for(Subject subject : subjects){
-                System.out.println(subject.getSubjectName() + " | " +
-                                   subject.getSubjectCode() + " | " +
-                                   subject.getCredits() + " credits" );
-            }
+            displayGetters.displaySubjects();
 
             String chosenSubject = input.getStrings();
 
@@ -224,20 +186,12 @@ public class DashboardHandler {
 
                 ArrayList <Assignment> assignments = findSubject.returnAssignment();
 
-                if(assignments.isEmpty()){
-                    System.out.println("No assignment for this subject!");
-                    return;
-                }
-
                 System.out.println("Please choose an assignment you want to edit: (press ~ to quit)");
 
-                for(Assignment assignment : assignments){
-                    System.out.println(assignment.getTitle() + " | " +
-                                       assignment.getGivenDate() + " | " +
-                                       assignment.getDueDate());
-                }
+                displayGetters.displayAssignments(findSubject);
 
                 String chosenAssignment = input.getStrings();
+
 
                 if(chosenAssignment.equals("~")){
                     System.out.println("Thank you!");
@@ -270,11 +224,7 @@ public class DashboardHandler {
 
                     System.out.println("Here is your updated assignment list: ");
 
-                    for(Assignment assignment : assignments){
-                        System.out.println(assignment.getTitle() + " | " +
-                                assignment.getGivenDate() + " | " +
-                                assignment.getDueDate());
-                    }
+                    displayGetters.displayAssignments(findSubject);
 
                     } else {
                     System.out.println("Assignment not found! Please try again.");

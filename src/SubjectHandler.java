@@ -4,11 +4,13 @@ public class SubjectHandler {
 
     private MenuController input;
     private SubjectOperator operator;
+    private DisplayHandler displayGetters;
 
 
-    public SubjectHandler(MenuController input, SubjectOperator operator) {
+    public SubjectHandler(MenuController input, SubjectOperator operator, DisplayHandler displayGetters) {
         this.input = input;
         this.operator = operator;
+        this.displayGetters = displayGetters;
     }
 
     public void handleSubjects() {
@@ -80,24 +82,13 @@ public class SubjectHandler {
     private void viewAllSubject() {
         System.out.println("Your Subjects:");
 
-        ArrayList <Subject> subjectInfo = operator.returnSubjects();
-
-        for(Subject subject : subjectInfo){
-            System.out.println(subject.getSubjectName() + " | " +
-                               subject.getSubjectCode() + " | " +
-                               subject.getCredits());
-        }
+       displayGetters.displaySubjects();
     }
 
     private void removeSubject() {
         System.out.println("Which subject do you want to remove?");
-        ArrayList <Subject> subjectInfo = operator.returnSubjects();
 
-        for(Subject subject : subjectInfo){
-            System.out.println(subject.getSubjectName() + " | " +
-                               subject.getSubjectCode() + " | " +
-                               subject.getCredits());
-        }
+        displayGetters.displaySubjects();
 
         String subjectIdentifier = input.getStrings();
 
@@ -106,12 +97,7 @@ public class SubjectHandler {
             System.out.println();
             System.out.println("Your current subjects: ");
 
-            for(Subject subject : subjectInfo){
-                System.out.println(subject.getSubjectName() + " | " +
-                        subject.getSubjectCode() + " | " +
-                        subject.getCredits());
-            }
-
+           displayGetters.displaySubjects();
 
         } else {
             System.out.println("Subject not found!");

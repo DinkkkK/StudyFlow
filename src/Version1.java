@@ -4,9 +4,10 @@ public class Version1 {
     public static void main(String[] args) {
         SubjectOperator operator = new SubjectOperator();
         MenuController input = new MenuController();
-        SubjectHandler subjectHandler = new SubjectHandler(input, operator);
+        DisplayHandler displayHandler = new DisplayHandler(operator);
+        SubjectHandler subjectHandler = new SubjectHandler(input, operator, displayHandler);
         MenuHandler menuHandler = new MenuHandler();
-        DashboardHandler dashboardHandler = new DashboardHandler(input, operator);
+        DashboardHandler dashboardHandler = new DashboardHandler(input, operator, displayHandler);
 
 
         //title to showcase name
