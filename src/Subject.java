@@ -38,6 +38,14 @@ public class Subject {
     }
         return false;
 }
+    public Assignment findAssignment(String chosenAssignment){
+        for (Assignment assignment : assignments) {
+            if (assignment.getTitle().equalsIgnoreCase(chosenAssignment)) {
+                return assignment;
+            }
+        }
+        return null;
+    }
 }
 
 

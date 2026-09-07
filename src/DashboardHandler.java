@@ -20,7 +20,7 @@ public class DashboardHandler {
         System.out.println();
         System.out.println("3. Remove Assignments");
         System.out.println();
-        System.out.println("4. Coming Soon");
+        System.out.println("4. Change Assignment");
         int options = input.getIntegers();
 
         switch (options) {
@@ -34,7 +34,7 @@ public class DashboardHandler {
                 removeAssignment();
             }
             case 4 -> {
-                System.out.println("4. Study Planner");
+                changeAssignment();
             }
             default -> {
                 System.out.println("Invalid input! Try again");
@@ -198,6 +198,65 @@ public class DashboardHandler {
                 System.out.println("Subject does not exist! Please try again!");
             }
 
+
+        }
+        private void changeAssignment(){
+            System.out.println("Which subject do you want to edit an assignment on?");
+
+            ArrayList<Subject> subjects = operator.returnSubjects();
+
+            for(Subject subject : subjects){
+                System.out.println(subject.getSubjectName() + " | " +
+                                   subject.getSubjectCode() + " | " +
+                                   subject.getCredits() + " credits" );
+            }
+
+            String chosenSubject = input.getStrings();
+
+            Subject findSubject = operator.findSubject(chosenSubject);
+
+            System.out.println("Please choose an assignment you want to edit: ");
+
+            if(findSubject != null){
+
+
+                ArrayList <Assignment> assignments = findSubject.returnAssignment();
+                for(Assignment assignment : assignments){
+                    System.out.println(assignment.getTitle() + " | " +
+                                       assignment.getDueDate() + " | " +
+                                       assignment.getGivenDate());
+                }
+
+                String chosenAssignment = input.getStrings();
+
+                if (chosenAssignment != null){
+                    System.out.println("Here is the assignment you want to change, please type in the changes you want to make.");
+
+                    for(Assignment assignment : assignments){
+                        System.out.println(assignment.getTitle() + " | " +
+                                assignment.getDueDate() + " | " +
+                                assignment.getGivenDate());
+                    }
+
+                    System.out.println("Assignment Name(NEW): ");
+                    String assignmentName = input.getStrings();
+
+                    System.out.println("Given Date(NEW): ");
+                    String GivenDate = input.getStrings();
+
+                    System.out.println("Due Date(NEW): ");
+                    String DueDate = input.getStrings();
+
+                    Subject editedAssignment = findSubject.changeAssignment(new Assignment(assignmentName,GivenDate,DueDate));
+
+                    System.out.println("Subject changed successfully!");
+
+
+                    }
+                }
+
+
+            }
 
         }
     }
