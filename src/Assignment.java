@@ -11,11 +11,25 @@ public class Assignment {
     public String getTitle(){
         return this.title;
     }
+
     public String getGivenDate(){
         return this.givenDate;
     }
+
     public String getDueDate(){
         return this.dueDate;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setGivenDate(String givenDate){
+        this.givenDate = givenDate ;
+    }
+
+    public void setDueDate(String dueDate){
+        this.dueDate = dueDate;
     }
 }
 

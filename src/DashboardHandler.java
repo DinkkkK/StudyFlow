@@ -201,7 +201,7 @@ public class DashboardHandler {
 
         }
         private void changeAssignment(){
-            System.out.println("Which subject do you want to edit an assignment on?");
+            System.out.println("Which subject do you want to edit an assignment on? (press ~ to quit)");
 
             ArrayList<Subject> subjects = operator.returnSubjects();
 
@@ -213,49 +213,76 @@ public class DashboardHandler {
 
             String chosenSubject = input.getStrings();
 
-            Subject findSubject = operator.findSubject(chosenSubject);
+            if(chosenSubject.equals("~")){
+                System.out.println("Thank you!");
+                return;
+            }
 
-            System.out.println("Please choose an assignment you want to edit: ");
+            Subject findSubject = operator.findSubject(chosenSubject);
 
             if(findSubject != null){
 
-
                 ArrayList <Assignment> assignments = findSubject.returnAssignment();
+
+                if(assignments.isEmpty()){
+                    System.out.println("No assignment for this subject!");
+                    return;
+                }
+
+                System.out.println("Please choose an assignment you want to edit: (press ~ to quit)");
+
                 for(Assignment assignment : assignments){
                     System.out.println(assignment.getTitle() + " | " +
-                                       assignment.getDueDate() + " | " +
-                                       assignment.getGivenDate());
+                                       assignment.getGivenDate() + " | " +
+                                       assignment.getDueDate());
                 }
 
                 String chosenAssignment = input.getStrings();
 
-                if (chosenAssignment != null){
-                    System.out.println("Here is the assignment you want to change, please type in the changes you want to make.");
+                if(chosenAssignment.equals("~")){
+                    System.out.println("Thank you!");
+                    return;
+                }
 
-                    for(Assignment assignment : assignments){
-                        System.out.println(assignment.getTitle() + " | " +
-                                assignment.getDueDate() + " | " +
-                                assignment.getGivenDate());
-                    }
+                Assignment findAssignment = findSubject.findAssignment(chosenAssignment);
+
+                if (findAssignment != null){
 
                     System.out.println("Assignment Name(NEW): ");
                     String assignmentName = input.getStrings();
 
+                    if(assignmentName.equals("~")){
+                        System.out.println("Thank you!");
+                        return;
+                    }
+
                     System.out.println("Given Date(NEW): ");
-                    String GivenDate = input.getStrings();
+                    String givenDate = input.getStrings();
 
                     System.out.println("Due Date(NEW): ");
-                    String DueDate = input.getStrings();
+                    String dueDate = input.getStrings();
 
-                    Subject editedAssignment = findSubject.changeAssignment(new Assignment(assignmentName,GivenDate,DueDate));
+                    findAssignment.setTitle(assignmentName);
+                    findAssignment.setGivenDate(givenDate);
+                    findAssignment.setDueDate(dueDate);
 
-                    System.out.println("Subject changed successfully!");
+                    System.out.println("Assignment changed successfully!");
 
+                    System.out.println("Here is your updated assignment list: ");
 
+                    for(Assignment assignment : assignments){
+                        System.out.println(assignment.getTitle() + " | " +
+                                assignment.getGivenDate() + " | " +
+                                assignment.getDueDate());
                     }
+
+                    } else {
+                    System.out.println("Assignment not found! Please try again.");
                 }
 
 
+            } else {
+                System.out.println("Subject not found! Please try again.");
             }
 
         }
