@@ -20,8 +20,7 @@ public class SubjectOperator {
 
 
         public int countSubjects() {
-            int total = subjects.size();
-            return total;
+            return subjects.size();
         }
 
         public boolean removeSubject(String s) {
