@@ -51,7 +51,9 @@ public class DashboardHandler {
 
             Subject subject = selectSubject();
 
-            if (subject != null) {
+            if (subject == null) {
+                return;
+            } else {
 
                 System.out.println("What assignment do you want to add? (press ~ to quit)");
                 String title = input.getStrings();
@@ -71,34 +73,25 @@ public class DashboardHandler {
 
                 displayGetters.displayAssignments(subject);
 
-            } else {
-                System.out.println("Subject not found!");
-
-
             }
         }
-
         System.out.println("Thank you!");
     }
 
     public void viewAssignment() {
-        System.out.println("Which subject would you like to view assignments for?");
+        System.out.println("Which subject would you like to view assignments for? (press ~ to quit)");
 
-        displayGetters.displaySubjects();
+        Subject subject = selectSubject();
 
-        String subject = input.getStrings();
-
-        Subject findSubject = operator.findSubject(subject);
-
-        if (findSubject != null) {
-            System.out.println("Assignment for: " + findSubject.getSubjectName());
-
-            displayGetters.displayAssignments(findSubject);
-
-        } else {
-            System.out.println("Subject not Found!");
-
+        if(subject == null){
+            return;
         }
+
+            System.out.println("Assignment for: " + subject.getSubjectName());
+
+            displayGetters.displayAssignments(subject);
+
+
     }
 
     private void removeAssignment() {
@@ -150,26 +143,18 @@ public class DashboardHandler {
     }
 
     private void changeAssignment() {
+
         System.out.println("Which subject do you want to edit an assignment on? (press ~ to quit)");
 
-        displayGetters.displaySubjects();
+       Subject subject = selectSubject();
 
-        String chosenSubject = input.getStrings();
+        if (subject != null) {
 
-        if (chosenSubject.equals("~")) {
-            System.out.println("Thank you!");
-            return;
-        }
-
-        Subject findSubject = operator.findSubject(chosenSubject);
-
-        if (findSubject != null) {
-
-            ArrayList<Assignment> assignments = findSubject.returnAssignment();
+            displayGetters.displayAssignments(subject);
 
             System.out.println("Please choose an assignment you want to edit: (press ~ to quit)");
 
-            displayGetters.displayAssignments(findSubject);
+            displayGetters.displayAssignments(subject);
 
             String chosenAssignment = input.getStrings();
 
@@ -179,7 +164,7 @@ public class DashboardHandler {
                 return;
             }
 
-            Assignment findAssignment = findSubject.findAssignment(chosenAssignment);
+            Assignment findAssignment = subject.findAssignment(chosenAssignment);
 
             if (findAssignment != null) {
 
@@ -205,7 +190,7 @@ public class DashboardHandler {
 
                 System.out.println("Here is your updated assignment list: ");
 
-                displayGetters.displayAssignments(findSubject);
+                displayGetters.displayAssignments(subject);
 
             } else {
                 System.out.println("Assignment not found! Please try again.");
@@ -224,11 +209,20 @@ public class DashboardHandler {
         String chosenSubject = input.getStrings();
 
         if(chosenSubject.equals("~")){
+            System.out.println("Goodbye");
             return null;
+        }
+
+        Subject findSubject = operator.findSubject(chosenSubject);
+
+        if(findSubject == null){
+            System.out.println("Subject cannot be found! Please try again");
+            return null;
+        }
+            return findSubject;
+        }
     }
-        return operator.findSubject(chosenSubject);
-}
-}
+
 
 
 
