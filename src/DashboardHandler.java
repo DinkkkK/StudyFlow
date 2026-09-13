@@ -99,7 +99,9 @@ public class DashboardHandler {
 
         Subject subject = selectSubject();
 
-        if (subject != null) {
+        if(subject == null){
+            return;
+        }
 
             ArrayList<Assignment> assignments = subject.returnAssignment();
 
@@ -134,13 +136,7 @@ public class DashboardHandler {
                     System.out.println("Sorry this assignment does not exist!");
                 }
             }
-
-        } else {
-            System.out.println("Subject does not exist! Please try again!");
         }
-
-
-    }
 
     private void changeAssignment() {
 
@@ -148,13 +144,13 @@ public class DashboardHandler {
 
        Subject subject = selectSubject();
 
-        if (subject != null) {
+       if(subject == null){
+           return;
+       }
 
             displayGetters.displayAssignments(subject);
 
             System.out.println("Please choose an assignment you want to edit: (press ~ to quit)");
-
-            displayGetters.displayAssignments(subject);
 
             String chosenAssignment = input.getStrings();
 
@@ -195,13 +191,7 @@ public class DashboardHandler {
             } else {
                 System.out.println("Assignment not found! Please try again.");
             }
-
-
-        } else {
-            System.out.println("Subject not found! Please try again.");
         }
-
-    }
 
     private Subject selectSubject() {
         displayGetters.displaySubjects();
