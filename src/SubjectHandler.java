@@ -4,13 +4,13 @@ public class SubjectHandler {
 
     private MenuController input;
     private SubjectOperator operator;
-    private DisplayHandler displayGetters;
+    private DisplayHandler displayHandlers;
 
 
-    public SubjectHandler(MenuController input, SubjectOperator operator, DisplayHandler displayGetters) {
+    public SubjectHandler(MenuController input, SubjectOperator operator, DisplayHandler displayHandlers) {
         this.input = input;
         this.operator = operator;
-        this.displayGetters = displayGetters;
+        this.displayHandlers = displayHandlers;
     }
 
     public void handleSubjects() {
@@ -27,7 +27,7 @@ public class SubjectHandler {
 
         switch (option) {
             case 1 -> {
-                viewAllSubject();
+                viewAllSubjects();
             }
             case 2 -> {
                 addSubject();
@@ -50,14 +50,14 @@ public class SubjectHandler {
             System.out.println("Enter subject name: (press ~ to exit)");
             String subject = input.getStrings();
 
-            while (subject.isEmpty()) {
-                System.out.println("Please don't leave this blank!");
-                subject = input.getStrings();
-            }
-
             if (subject.equals("~")) {
                 System.out.println("Thank you!");
                 break;
+            }
+
+            while (subject.isEmpty()) {
+                System.out.println("Please don't leave this blank!");
+                subject = input.getStrings();
             }
 
             System.out.println("Enter subject code: ");
@@ -79,16 +79,16 @@ public class SubjectHandler {
 
     }
 
-    private void viewAllSubject() {
+    private void viewAllSubjects() {
         System.out.println("Your Subjects:");
 
-       displayGetters.displaySubjects();
+       displayHandlers.displaySubjects();
     }
 
     private void removeSubject() {
         System.out.println("Which subject do you want to remove?");
 
-        displayGetters.displaySubjects();
+        displayHandlers.displaySubjects();
 
         String subjectIdentifier = input.getStrings();
 
@@ -97,7 +97,7 @@ public class SubjectHandler {
             System.out.println();
             System.out.println("Your current subjects: ");
 
-           displayGetters.displaySubjects();
+           displayHandlers.displaySubjects();
 
         } else {
             System.out.println("Subject not found!");
