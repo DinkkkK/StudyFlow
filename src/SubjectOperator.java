@@ -4,7 +4,7 @@ public class SubjectOperator {
         private ArrayList<Subject> subjects = new ArrayList<>();
 
         public boolean addSubject(Subject subject){
-            if(duplicateChecker(subject)){
+            if(isSubjectDuplicate(subject)){
                 return false;
 
             }
@@ -12,7 +12,7 @@ public class SubjectOperator {
             return true;
         }
 
-        public ArrayList<Subject> returnSubjects() {
+        public ArrayList<Subject> getSubjects() {
 
             return subjects;
         }
@@ -23,10 +23,10 @@ public class SubjectOperator {
             return subjects.size();
         }
 
-        public boolean removeSubject(String s) {
+        public boolean removeSubject(String subjectIdentifier) {
             for (int i = 0; i < subjects.size(); i++){
-                if(subjects.get(i).getSubjectName().equalsIgnoreCase(s) ||
-                  subjects.get(i).getSubjectCode().equalsIgnoreCase(s)){
+                if(subjects.get(i).getSubjectName().equalsIgnoreCase(subjectIdentifier) ||
+                  subjects.get(i).getSubjectCode().equalsIgnoreCase(subjectIdentifier)){
 
                     subjects.remove(i);
                     return true;
@@ -48,7 +48,7 @@ public class SubjectOperator {
             return null;
         }
 
-        public boolean duplicateChecker(Subject newSubject) {
+        public boolean isSubjectDuplicate(Subject newSubject) {
             for (Subject subject : subjects) {
                 if (newSubject.getSubjectName().equalsIgnoreCase(subject.getSubjectName()) ||
                         newSubject.getSubjectCode().equalsIgnoreCase(subject.getSubjectCode())) {

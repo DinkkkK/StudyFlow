@@ -10,7 +10,7 @@ public class DisplayHandler {
 
     public void displaySubjects(){
 
-        ArrayList<Subject> subjects = operator.returnSubjects();
+        ArrayList<Subject> subjects = operator.getSubjects();
 
         if(subjects.isEmpty()){
             System.out.println("No subjects found!");
