@@ -28,7 +28,7 @@ public class DisplayHandler {
 
     public void displayAssignments(Subject subject){
 
-        ArrayList<Assignment> assignments = subject.returnAssignment();
+        ArrayList<Assignment> assignments = subject.getAssignments();
 
         if(assignments.isEmpty()){
             System.out.println("No assignment found!");

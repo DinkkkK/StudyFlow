@@ -24,23 +24,24 @@ public class Subject {
         assignments.add(assignment);
     }
 
-    public ArrayList<Assignment> returnAssignment(){
+    public ArrayList<Assignment> getAssignments(){
         return assignments;
 
     }
 
-    public boolean removeAssignment(String assignment){
+    public boolean removeAssignment(String assignmentName) {
         for(int i = 0; i < assignments.size(); i++){
-            if(assignments.get(i).getTitle().equalsIgnoreCase(assignment)){
-            assignments.remove(i);
-            return true;
-        }
+            if(assignments.get(i).getTitle().equalsIgnoreCase(assignmentName)) {
+                  assignments.remove(i);
+                  return true;
+            }
     }
         return false;
 }
-    public Assignment findAssignment(String chosenAssignment){
+
+    public Assignment findAssignment(String assignmentName){
         for (Assignment assignment : assignments) {
-            if (assignment.getTitle().equalsIgnoreCase(chosenAssignment)) {
+            if (assignment.getTitle().equalsIgnoreCase(assignmentName)){
                 return assignment;
             }
         }
