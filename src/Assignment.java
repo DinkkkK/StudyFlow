@@ -25,7 +25,7 @@ public class Assignment {
     }
 
     public void setGivenDate(String givenDate){
-        this.givenDate = givenDate ;
+        this.givenDate = givenDate;
     }
 
     public void setDueDate(String dueDate){
