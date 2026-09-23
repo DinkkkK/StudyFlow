@@ -23,7 +23,7 @@ public class DashboardHandler {
         System.out.println("3. Remove Assignments");
         System.out.println();
         System.out.println("4. Change Assignment");
-        int options = input.getIntegers();
+        int options = input.getInteger();
 
         switch (options) {
             case 1 -> {
@@ -56,17 +56,17 @@ public class DashboardHandler {
             }
 
                 System.out.println("What assignment do you want to add? (press ~ to quit)");
-                String title = input.getStrings();
+                String title = input.getString();
 
                 if (title.equals("~")) {
                     break;
                 }
 
                 System.out.println("When is it given?");
-                String givenDate = input.getStrings();
+                String givenDate = input.getString();
 
                 System.out.println("When is the deadline?");
-                String dueDate = input.getStrings();
+                String dueDate = input.getString();
 
                 subject.addAssignment(new Assignment(title, givenDate, dueDate));
                 System.out.println("Assignments added successfully!");
@@ -139,7 +139,7 @@ public class DashboardHandler {
        }
 
        System.out.println("Assignment Name(NEW): ");
-       String assignmentName = input.getStrings();
+       String assignmentName = input.getString();
 
        if (assignmentName.equals("~")) {
            System.out.println("Thank you!");
@@ -147,10 +147,10 @@ public class DashboardHandler {
             }
 
         System.out.println("Given Date(NEW): ");
-        String givenDate = input.getStrings();
+        String givenDate = input.getString();
 
         System.out.println("Due Date(NEW): ");
-        String dueDate = input.getStrings();
+        String dueDate = input.getString();
 
         assignment.setTitle(assignmentName);
         assignment.setGivenDate(givenDate);
@@ -167,7 +167,7 @@ public class DashboardHandler {
     private Subject selectSubject() {
         displayHandlers.displaySubjects();
 
-        String chosenSubject = input.getStrings();
+        String chosenSubject = input.getString();
 
         if (chosenSubject.equals("~")) {
             System.out.println("Goodbye");
@@ -185,7 +185,7 @@ public class DashboardHandler {
 
     private Assignment selectAssignment(Subject subject) {
 
-        ArrayList<Assignment> assignments = subject.returnAssignment();
+        ArrayList<Assignment> assignments = subject.getAssignments();
 
         if (assignments.isEmpty()) {
             System.out.println();
@@ -197,7 +197,7 @@ public class DashboardHandler {
         System.out.println("Here are your listed assignments:");
         displayHandlers.displayAssignments(subject);
 
-        String chosenAssignment = input.getStrings();
+        String chosenAssignment = input.getString();
 
        if(chosenAssignment.equals("~")){
            System.out.println("Goodbye!");

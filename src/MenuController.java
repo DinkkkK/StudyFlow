@@ -1,21 +1,18 @@
 import java.util.Scanner;
 
-//handles inputs for main class
 public class MenuController {
-    private Scanner sc;
+    private Scanner scanner;
 
     public MenuController(){
-        this.sc = new Scanner(System.in);
+        this.scanner = new Scanner(System.in);
     }
 
-    public String getStrings(){
-        String string = sc.nextLine();
-        return string;
+    public String getString(){
+        return scanner.nextLine();
     }
 
-    public int getIntegers(){
-        int integer = Integer.valueOf(sc.nextLine());
-        return integer;
+    //will fix using try logic
+    public int getInteger(){
+        return Integer.valueOf(scanner.nextLine());
     }
-
 }

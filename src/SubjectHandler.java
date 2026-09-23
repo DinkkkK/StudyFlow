@@ -23,7 +23,7 @@ public class SubjectHandler {
         System.out.println("4. Find a Subject");
         System.out.print("Select: ");
 
-        int option = input.getIntegers();
+        int option = input.getInteger();
 
         switch (option) {
             case 1 -> {
@@ -48,7 +48,7 @@ public class SubjectHandler {
     private void addSubject() {
         while (true) {
             System.out.println("Enter subject name: (press ~ to exit)");
-            String subject = input.getStrings();
+            String subject = input.getString();
 
             if (subject.equals("~")) {
                 System.out.println("Thank you!");
@@ -57,14 +57,14 @@ public class SubjectHandler {
 
             while (subject.isEmpty()) {
                 System.out.println("Please don't leave this blank!");
-                subject = input.getStrings();
+                subject = input.getString();
             }
 
             System.out.println("Enter subject code: ");
-            String subjectCode = input.getStrings();
+            String subjectCode = input.getString();
 
             System.out.println("Enter credits for subject: ");
-            int subjectCredits = input.getIntegers();
+            int subjectCredits = input.getInteger();
 
 
             boolean added = operator.addSubject(new Subject(subject, subjectCode, subjectCredits));
@@ -90,7 +90,7 @@ public class SubjectHandler {
 
         displayHandlers.displaySubjects();
 
-        String subjectIdentifier = input.getStrings();
+        String subjectIdentifier = input.getString();
 
         if (operator.removeSubject(subjectIdentifier)) {
             System.out.println("Subject removed successfully!");
@@ -106,7 +106,7 @@ public class SubjectHandler {
 
     private void findSubject() {
         System.out.println("What subject are you looking for?");
-        String searchFor = input.getStrings();
+        String searchFor = input.getString();
 
         Subject foundSubject = operator.findSubject(searchFor);
 

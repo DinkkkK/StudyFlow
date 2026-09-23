@@ -15,14 +15,14 @@ public class Version1 {
         intro.printIntroduction();
 
         System.out.print("<press Enter key>");
-       String enter = input.getStrings();
+       String enter = input.getString();
 
         //prevents user to enter invalid texts
         while(true) {
             if(enter.isEmpty()){
                 //menu tab to showcase options
                     menuHandler.showMainMenu();
-                    int option = input.getIntegers();
+                    int option = input.getInteger();
 
                     switch(option){
                         case 1 -> {
@@ -41,7 +41,7 @@ public class Version1 {
                     }
                } else {
                 System.out.println("Invalid input! Try again");
-                enter = input.getStrings();
+                enter = input.getString();
             }
             }
         }
