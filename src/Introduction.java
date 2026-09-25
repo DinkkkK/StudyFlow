@@ -4,7 +4,7 @@ public class Introduction {
         System.out.println("=================================================");
         System.out.println("                 STUDYFLOW                       ");
         System.out.println("=================================================");
-        
+
         System.out.println();
         System.out.println("Welcome to StudyFlow!");
         System.out.println();
