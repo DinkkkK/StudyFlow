@@ -26,7 +26,6 @@ public class Subject {
 
     public ArrayList<Assignment> getAssignments(){
         return assignments;
-
     }
 
     public boolean removeAssignment(String assignmentName) {

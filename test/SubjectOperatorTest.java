@@ -87,7 +87,7 @@ class SubjectOperatorTest {
 
     //7
     @Test
-    void removeSubject_DecreaseIfSubjectIsRemoved() {
+    void removeSubject_decreaseIfSubjectIsRemoved() {
         SubjectOperator operator = new SubjectOperator();
 
         Subject subject1 = new Subject("Computing in Society", "Math503", 15);
