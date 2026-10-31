@@ -1,9 +1,10 @@
+import java.util.Scanner;
 
 public class Version1 {
 
     public static void main(String[] args) {
         SubjectOperator operator = new SubjectOperator();
-        MenuController input = new MenuController();
+        MenuController input = new MenuController(new Scanner(System.in));
         DisplayHandler displayHandler = new DisplayHandler(operator);
         SubjectHandler subjectHandler = new SubjectHandler(input, operator, displayHandler);
         MenuHandler menuHandler = new MenuHandler();

@@ -3,16 +3,20 @@ import java.util.Scanner;
 public class MenuController {
     private Scanner scanner;
 
-    public MenuController(){
+    public MenuController() {
         this.scanner = new Scanner(System.in);
     }
 
-    public String getString(){
+    public MenuController(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public String getString() {
         return scanner.nextLine();
     }
 
     //will fix using try logic
-    public int getInteger(){
+    public int getInteger() {
         return Integer.valueOf(scanner.nextLine());
     }
 }
