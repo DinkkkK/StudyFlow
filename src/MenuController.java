@@ -17,6 +17,14 @@ public class MenuController {
 
     //will fix using try logic
     public int getInteger() {
-        return Integer.valueOf(scanner.nextLine());
+
+        while(true) {
+            try {
+                return Integer.valueOf(scanner.nextLine());
+
+            } catch (NumberFormatException e) {
+                System.out.println("Please input a number!");
+            }
+        }
     }
 }

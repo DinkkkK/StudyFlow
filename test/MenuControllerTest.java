@@ -26,5 +26,14 @@ class MenuControllerTest {
         assertEquals(123, input.getInteger());
 
     }
+    //3
+    @Test
+    void getInteger_retriesAfterInvalidInput() {
+
+        Scanner testScanner = new Scanner("Hello\n123");
+        MenuController input = new MenuController(testScanner);
+        assertEquals(123, input.getInteger());
+
+    }
 
 }

@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class SubjectHandler {
 
@@ -43,7 +42,6 @@ public class SubjectHandler {
             }
         }
     }
-
 
     private void addSubject() {
         while (true) {
