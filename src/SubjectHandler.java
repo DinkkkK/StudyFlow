@@ -23,6 +23,7 @@ public class SubjectHandler {
         System.out.print("Select: ");
 
         int option = input.getInteger();
+        
 
         switch (option) {
             case 1 -> {
@@ -41,6 +42,12 @@ public class SubjectHandler {
                 System.out.println("Invalid input! Try again");
             }
         }
+    }
+
+    private void viewAllSubjects() {
+        System.out.println("Your Subjects:");
+
+        displayHandlers.displaySubjects();
     }
 
     private void addSubject() {
@@ -75,12 +82,6 @@ public class SubjectHandler {
 
         }
 
-    }
-
-    private void viewAllSubjects() {
-        System.out.println("Your Subjects:");
-
-       displayHandlers.displaySubjects();
     }
 
     private void removeSubject() {
