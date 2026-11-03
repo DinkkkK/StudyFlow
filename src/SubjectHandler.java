@@ -23,7 +23,7 @@ public class SubjectHandler {
         System.out.print("Select: ");
 
         int option = input.getInteger();
-        
+
 
         switch (option) {
             case 1 -> {

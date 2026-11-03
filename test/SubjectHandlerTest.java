@@ -60,4 +60,27 @@ class SubjectHandlerTest {
 
     }
 
+    @Test
+    void SubjectHandler_removeSubject() {
+
+        Subject subject1 = new Subject("OOP", "COMP503", 15);
+        Subject subject2 = new Subject("MATH", "MATH503",25);
+        Scanner testScanner = new Scanner("3\nMATH");
+        MenuController input = new MenuController(testScanner);
+        SubjectOperator operator = new SubjectOperator();
+        DisplayHandler displayHandler = new DisplayHandler(operator);
+        SubjectHandler subjectHandler = new SubjectHandler(input,operator,displayHandler);
+
+        operator.addSubject(subject1);
+        operator.addSubject(subject2);
+
+        subjectHandler.handleSubjects();
+
+        Subject findSubject1 = operator.findSubject("MATH");
+        assertNull(findSubject1);
+
+        Subject findSubject2 = operator.findSubject("OOP");
+        assertNotNull(findSubject2);
+    }
+
 }
