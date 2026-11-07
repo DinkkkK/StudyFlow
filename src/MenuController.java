@@ -15,7 +15,6 @@ public class MenuController {
         return scanner.nextLine();
     }
 
-    //will fix using try logic
     public int getInteger() {
 
         while(true) {

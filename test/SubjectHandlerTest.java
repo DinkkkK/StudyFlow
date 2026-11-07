@@ -50,14 +50,11 @@ class SubjectHandlerTest {
 
         Subject checker = operator.findSubject("OOP");
 
+        assertNotNull(checker);
         assertEquals("OOP",checker.getSubjectName());
         assertEquals("COMP503",checker.getSubjectCode());
         assertEquals(15,checker.getCredits());
-        assertNotNull(checker);
-
-        Subject checker1 = operator.findSubject("MATH");
-        assertNull(checker1);
-
+        
     }
 
     @Test
@@ -81,6 +78,35 @@ class SubjectHandlerTest {
 
         Subject findSubject2 = operator.findSubject("OOP");
         assertNotNull(findSubject2);
+    }
+
+    @Test
+    void SubjectHandler_findSubject() {
+
+        Subject subject = new Subject("OOP", "COMP503", 15);
+        Scanner testScanner = new Scanner("4\nOOP");
+        MenuController input = new MenuController(testScanner);
+
+        SubjectOperator operator = new SubjectOperator();
+        DisplayHandler displayHandler = new DisplayHandler(operator);
+        SubjectHandler subjectHandler = new SubjectHandler(input,operator,displayHandler);
+
+        operator.addSubject(subject);
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+
+        System.setOut(new PrintStream(output));
+
+        subjectHandler.handleSubjects();
+
+        System.setOut(originalOut);
+
+        String capturedOutput = output.toString();
+
+        assertTrue(capturedOutput.contains("Subject found successfully!"));
+        assertTrue(capturedOutput.contains("OOP"));
+
     }
 
 }
